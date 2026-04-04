@@ -15,9 +15,21 @@ func Create(c *fiber.Ctx) error {
 		})
 	}
 
-	if !utils.IsNotNull(serviceType.name, serviceType.description) || serviceType.price < 0 {
+	if !utils.IsNotNull(serviceType.Name) {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": "Fields is required",
+		})
+	}
+
+	if serviceType.Price <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Price must be greater than 0",
+		})
+	}
+
+	if err := db.DB.Where("name = ?", serviceType.Name).First(&serviceType).Error; err == nil {
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
+			"error": "Service type already exists",
 		})
 	}
 
@@ -27,26 +39,32 @@ func Create(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.JSON("")
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"status": serviceType,
+	})
 }
 
 func View(c *fiber.Ctx) error {
 	var serviceType ServiceType
 	id := c.Params("id")
 
-	if err := db.DB.Where("id = ?", id).First(&serviceType); err != nil {
+	if err := db.DB.Where("id = ?", id).First(&serviceType).Error; err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": "Service type not found",
 		})
 	}
 
-	return c.JSON(serviceType)
+	return c.JSON(fiber.Map{
+		"name":        serviceType.Name,
+		"description": serviceType.Description,
+		"price":       serviceType.Price,
+	})
 }
 
 func Views(c *fiber.Ctx) error {
 	var serviceType []ServiceType
 
-	if err := db.DB.Find(&serviceType); err != nil {
+	if err := db.DB.Find(&serviceType).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Failed to fetch service types",
 		})

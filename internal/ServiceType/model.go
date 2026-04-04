@@ -5,7 +5,7 @@ import "gorm.io/gorm"
 type ServiceType struct {
 	gorm.Model
 
-	name        string
-	description string
-	price       float64
+	Name        string  `gorm:"uniqueIndex;not null" json:"name"`
+	Description string  `json:"description"`
+	Price       float64 `gorm:"not null" json:"price"`
 }

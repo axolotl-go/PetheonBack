@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	servicetype "github.com/axolotl-go/eternal_paw/internal/ServiceType"
 	"github.com/axolotl-go/eternal_paw/internal/config"
 	"github.com/axolotl-go/eternal_paw/internal/db"
 	"github.com/axolotl-go/eternal_paw/internal/http"
@@ -30,6 +31,7 @@ func main() {
 		&users.User{},
 		&pets.Pet{},
 		&serviceorders.Order{},
+		&servicetype.ServiceType{},
 	)
 
 	app := fiber.New()

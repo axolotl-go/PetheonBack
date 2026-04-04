@@ -1,6 +1,7 @@
 package serviceorders
 
 import (
+	servicetype "github.com/axolotl-go/eternal_paw/internal/ServiceType"
 	"github.com/axolotl-go/eternal_paw/internal/db"
 	"github.com/axolotl-go/eternal_paw/internal/pets"
 	"github.com/axolotl-go/eternal_paw/internal/users"
@@ -37,7 +38,15 @@ func Create(c *fiber.Ctx) error {
 		})
 	}
 
-	order.ServiceType = "individual"
+	var st servicetype.ServiceType
+	if err := db.DB.Where("id = ?", order.ServiceType).First(&st).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Service type not found",
+		})
+	}
+
+	order.ServiceType = st.Name
+
 	order.Status = "pending"
 
 	if order.PickupRequired {
@@ -46,18 +55,7 @@ func Create(c *fiber.Ctx) error {
 		order.PickupAddress = ""
 	}
 
-	// Urn
-
-	var pricing float64
-
-	if order.ServiceType == "composta" {
-		pricing = (pet.Weight * 90) + 500
-	} else if order.ServiceType == "cremation" {
-		pricing = (pet.Weight * 120) + 500
-	} else {
-		pricing = pet.Weight * 120
-	}
-	order.Price = pricing
+	order.Price = st.Price * pet.Weight
 
 	order.OrderNumber = utils.GenerateOrder()
 

@@ -28,7 +28,6 @@ func Create(c *fiber.Ctx) error {
 		user.Password,
 		user.Phone,
 		user.Address,
-		user.Role,
 	) {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": "Missing required fields",
@@ -116,7 +115,7 @@ func Login(c *fiber.Ctx) error {
 		Path:     "/",
 		HTTPOnly: true,
 		Secure:   false,
-		SameSite: "None",
+		SameSite: "Lax",
 		MaxAge:   60 * 60 * 24,
 	})
 
@@ -153,6 +152,9 @@ func GetUserData(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
 		"username": user.Name,
 		"email":    user.Email,
+		"address":  user.Address,
+		"phone":    user.Phone,
+		"role":     user.Role,
 	})
 }
 
@@ -169,5 +171,25 @@ func Logout(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"message": "Logged out successfully",
+	})
+}
+
+func Verify(c *fiber.Ctx) error {
+	tokenString := c.Cookies("token")
+	if tokenString == "" {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": "No token provided",
+		})
+	}
+
+	_, err := auth.ParserJwt(tokenString)
+	if err != nil {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": "Invalid token",
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"valid": true,
 	})
 }
