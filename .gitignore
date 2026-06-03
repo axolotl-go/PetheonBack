@@ -43,6 +43,10 @@ public/*
 # DB
 *.db
 
+# logs
+*.log
+*.gz
+
 #test
 test/
 *.test

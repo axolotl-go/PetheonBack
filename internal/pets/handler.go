@@ -25,7 +25,7 @@ func Create(c *fiber.Ctx) error {
 			"error": "Invalid user_id",
 		})
 	}
-	pet.UserID = uint(userID)
+	// pet.UserID = uint(userID)
 
 	weight, err := strconv.ParseFloat(c.FormValue("weight"), 64)
 	if err != nil || weight <= 0 {

@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Funeraria huella eterna — Cremación y Siembra de Mascotas en Torreón
+    </title>
+    <meta
+      name="description"
+      content="En Funeraria huella eterna, tu mascota no desaparece — vive en una planta. Servicios de cremación y siembra en Torreón, Coahuila. Solicita tu cotización."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+   TOKENS DE MARCA — Funeraria huella eterna
+   ============================================================ */
+      :root {
+        --verde-profundo: #2d4a22;
+        --verde-medio: #5c8a3e;
+        --verde-claro: #a8c97f;
+        --verde-tenue: #e8f4dc;
+        --tierra: #7a5c38;
+        --dorado: #c4a265;
+        --marfil: #f5f0e8;
+        --negro: #1a1a14;
+
+        --ff-display: "Cormorant Garamond", Georgia, serif;
+        --ff-body: "DM Sans", sans-serif;
+
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--ff-body);
+        background: var(--marfil);
+        color: var(--negro);
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+   TIPOGRAFÍA GLOBAL
+   ============================================================ */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--ff-display);
+        font-weight: 400;
+        line-height: 1.15;
+      }
+
+      /* ============================================================
+   NAVBAR
+   ============================================================ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(1.5rem, 5vw, 4rem);
+        height: 68px;
+        background: rgba(245, 240, 232, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(45, 74, 34, 0.1);
+        transition: box-shadow 0.3s;
+      }
+
+      nav.scrolled {
+        box-shadow: 0 2px 24px rgba(45, 74, 34, 0.08);
+      }
+
+      .nav-logo {
+        font-family: var(--ff-display);
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--verde-profundo);
+        letter-spacing: 0.04em;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family: var(--ff-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--negro);
+        text-decoration: none;
+        opacity: 0.65;
+        transition: opacity 0.2s;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      .btn-nav {
+        font-family: var(--ff-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--marfil) !important;
+        opacity: 1 !important;
+        background: var(--verde-profundo);
+        padding: 0.55rem 1.4rem;
+        border-radius: 2px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-nav:hover {
+        background: var(--verde-medio);
+        transform: translateY(-1px);
+      }
+
+      /* ============================================================
+   HERO
+   ============================================================ */
+      #hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 0 clamp(1.5rem, 5vw, 4rem);
+        padding-top: 68px;
+        gap: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg-shape {
+        position: absolute;
+        right: -8vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 55vw;
+        height: 90vh;
+        background: var(--verde-tenue);
+        border-radius: 50% 0 0 50%;
+        z-index: 0;
+        opacity: 0.6;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--ff-body);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--verde-medio);
+        margin-bottom: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease-out) 0.1s forwards;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 2rem;
+        height: 1px;
+        background: var(--verde-medio);
+      }
+
+      h1.hero-title {
+        font-size: clamp(3rem, 5.5vw, 5.2rem);
+        font-weight: 300;
+        color: var(--verde-profundo);
+        margin-bottom: 1.6rem;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease-out) 0.25s forwards;
+      }
+
+      h1.hero-title em {
+        font-style: italic;
+        color: var(--tierra);
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--negro);
+        opacity: 0;
+        max-width: 42ch;
+        line-height: 1.75;
+        animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-sub span {
+        opacity: 0;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease-out) 0.55s forwards;
+      }
+
+      .btn-primary {
+        font-family: var(--ff-body);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--marfil);
+        background: var(--verde-profundo);
+        border: none;
+        padding: 0.9rem 2rem;
+        border-radius: 2px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+
+      .btn-primary:hover {
+        background: var(--verde-medio);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(45, 74, 34, 0.2);
+      }
+
+      .btn-secondary {
+        font-family: var(--ff-body);
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--verde-profundo);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: gap 0.2s;
+        border-bottom: 1px solid rgba(45, 74, 34, 0.3);
+        padding-bottom: 2px;
+      }
+
+      .btn-secondary:hover {
+        gap: 0.85rem;
+      }
+
+      .hero-visual {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: fadeIn 1.2s var(--ease-out) 0.6s forwards;
+      }
+
+      /* SVG ilustración del ciclo */
+      .cycle-illustration {
+        width: min(420px, 90%);
+        aspect-ratio: 1;
+      }
+
+      /* ============================================================
+   SECCIÓN CONCEPTO — EL CICLO
+   ============================================================ */
+      #concepto {
+        padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+        text-align: center;
+        background: var(--verde-profundo);
+        position: relative;
+        overflow: hidden;
+      }
+
+      #concepto::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 60px;
+        background: var(--verde-claro);
+        opacity: 0.4;
+      }
+
+      .concepto-eyebrow {
+        font-family: var(--ff-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--verde-claro);
+        opacity: 0.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .concepto-title {
+        font-size: clamp(2.4rem, 4.5vw, 4rem);
+        font-weight: 300;
+        color: var(--marfil);
+        max-width: 18ch;
+        margin: 0 auto 2rem;
+        line-height: 1.2;
+      }
+
+      .concepto-title em {
+        font-style: italic;
+        color: var(--verde-claro);
+      }
+
+      .concepto-body {
+        font-size: 1.05rem;
+        color: var(--marfil);
+        opacity: 0.7;
+        max-width: 55ch;
+        margin: 0 auto 4rem;
+        line-height: 1.8;
+      }
+
+      .ciclo-steps {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        flex-wrap: wrap;
+      }
+
+      .ciclo-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0 2.5rem;
+      }
+
+      .ciclo-step-num {
+        font-family: var(--ff-display);
+        font-size: 3.5rem;
+        font-weight: 300;
+        color: var(--verde-claro);
+        opacity: 0.25;
+        line-height: 1;
+      }
+
+      .ciclo-step-label {
+        font-family: var(--ff-display);
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--marfil);
+        font-style: italic;
+      }
+
+      .ciclo-step-desc {
+        font-family: var(--ff-body);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--verde-claro);
+        opacity: 0.6;
+      }
+
+      .ciclo-arrow {
+        color: var(--verde-claro);
+        opacity: 0.3;
+        font-size: 1.5rem;
+        padding: 0 0.5rem;
+        margin-top: -2.5rem;
+      }
+
+      /* ============================================================
+   SERVICIOS
+   ============================================================ */
+      #servicios {
+        padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+      }
+
+      .section-header {
+        margin-bottom: 4rem;
+      }
+
+      .section-eyebrow {
+        font-family: var(--ff-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--verde-medio);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .section-eyebrow::before {
+        content: "";
+        display: block;
+        width: 1.5rem;
+        height: 1px;
+        background: var(--verde-medio);
+      }
+
+      .section-title {
+        font-size: clamp(2.2rem, 4vw, 3.6rem);
+        font-weight: 300;
+        color: var(--verde-profundo);
+      }
+
+      .section-title em {
+        font-style: italic;
+        color: var(--tierra);
+      }
+
+      .servicios-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 1.5px;
+        background: rgba(45, 74, 34, 0.12);
+        border: 1.5px solid rgba(45, 74, 34, 0.12);
+      }
+
+      .servicio-card {
+        background: var(--marfil);
+        padding: 3rem 2.5rem;
+        position: relative;
+        transition: background 0.3s;
+        cursor: default;
+      }
+
+      .servicio-card:hover {
+        background: var(--verde-tenue);
+      }
+
+      .servicio-card.featured {
+        background: var(--verde-profundo);
+      }
+
+      .servicio-card.featured:hover {
+        background: #3a5e2c;
+      }
+
+      .servicio-badge {
+        font-family: var(--ff-body);
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--marfil);
+        background: var(--dorado);
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 1px;
+        margin-bottom: 1.5rem;
+      }
+
+      .servicio-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1.5rem;
+        opacity: 0.5;
+      }
+
+      .servicio-card.featured .servicio-icon {
+        opacity: 0.8;
+      }
+
+      .servicio-name {
+        font-family: var(--ff-display);
+        font-size: 1.9rem;
+        font-weight: 400;
+        color: var(--verde-profundo);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .servicio-card.featured .servicio-name {
+        color: var(--marfil);
+        font-size: 2.4rem;
+      }
+
+      .servicio-desc {
+        font-size: 0.92rem;
+        color: var(--negro);
+        opacity: 0.65;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .servicio-card.featured .servicio-desc {
+        color: var(--marfil);
+        opacity: 0.75;
+      }
+
+      .servicio-includes {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .servicio-includes li {
+        font-size: 0.82rem;
+        color: var(--negro);
+        opacity: 0.6;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .servicio-includes li::before {
+        content: "–";
+        color: var(--verde-medio);
+        flex-shrink: 0;
+        margin-top: 0.05rem;
+      }
+
+      .servicio-card.featured .servicio-includes li {
+        color: var(--marfil);
+        opacity: 0.7;
+      }
+
+      .servicio-card.featured .servicio-includes li::before {
+        color: var(--verde-claro);
+      }
+
+      .servicio-target {
+        margin-top: 2rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--tierra);
+        opacity: 0.7;
+      }
+
+      .servicio-card.featured .servicio-target {
+        color: var(--verde-claro);
+      }
+
+      /* ============================================================
+   COTIZACIÓN
+   ============================================================ */
+      #cotizacion {
+        padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+        background: var(--verde-tenue);
+        position: relative;
+      }
+
+      .cotizacion-inner {
+        max-width: 680px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-top: 2.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-family: var(--ff-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--verde-profundo);
+        opacity: 0.7;
+      }
+
+      input,
+      select,
+      textarea {
+        font-family: var(--ff-body);
+        font-size: 0.95rem;
+        color: var(--negro);
+        background: var(--marfil);
+        border: 1px solid rgba(45, 74, 34, 0.2);
+        border-radius: 2px;
+        padding: 0.8rem 1rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--verde-medio);
+        box-shadow: 0 0 0 3px rgba(92, 138, 62, 0.12);
+      }
+
+      select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232D4A22' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+        cursor: pointer;
+      }
+
+      .form-note {
+        font-size: 0.78rem;
+        color: var(--negro);
+        opacity: 0.45;
+        margin-top: 1rem;
+        grid-column: 1 / -1;
+      }
+
+      .btn-form {
+        font-family: var(--ff-body);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--marfil);
+        background: var(--verde-profundo);
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        margin-top: 1rem;
+        grid-column: 1 / -1;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        text-align: center;
+      }
+
+      .btn-form:hover {
+        background: var(--verde-medio);
+        transform: translateY(-1px);
+      }
+
+      .form-success {
+        display: none;
+        padding: 1.5rem;
+        background: var(--verde-profundo);
+        color: var(--marfil);
+        border-radius: 2px;
+        font-family: var(--ff-display);
+        font-size: 1.3rem;
+        font-weight: 300;
+        font-style: italic;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      /* ============================================================
+   PROCESO
+   ============================================================ */
+      #proceso {
+        padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+      }
+
+      .proceso-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        margin-top: 3.5rem;
+        background: rgba(45, 74, 34, 0.08);
+      }
+
+      .proceso-step {
+        background: var(--marfil);
+        padding: 2.5rem 2rem;
+        position: relative;
+      }
+
+      .paso-num {
+        font-family: var(--ff-display);
+        font-size: 5rem;
+        font-weight: 300;
+        color: var(--verde-claro);
+        opacity: 0.25;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+
+      .paso-title {
+        font-family: var(--ff-display);
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--verde-profundo);
+        margin-bottom: 0.75rem;
+        font-style: italic;
+      }
+
+      .paso-desc {
+        font-size: 0.88rem;
+        color: var(--negro);
+        opacity: 0.6;
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+   NOSOTROS + B2B
+   ============================================================ */
+      #nosotros-b2b {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #nosotros {
+        padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+        background: var(--negro);
+      }
+
+      #nosotros .section-eyebrow {
+        color: var(--verde-claro);
+      }
+      #nosotros .section-title {
+        color: var(--marfil);
+      }
+
+      .nosotros-body {
+        font-size: 1rem;
+        color: var(--marfil);
+        opacity: 0.65;
+        line-height: 1.8;
+        max-width: 48ch;
+        margin-top: 1.5rem;
+      }
+
+      #b2b {
+        padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+        background: var(--tierra);
+      }
+
+      #b2b .section-eyebrow {
+        color: var(--dorado);
+      }
+      #b2b .section-title {
+        color: var(--marfil);
+      }
+
+      .b2b-body {
+        font-size: 1rem;
+        color: var(--marfil);
+        opacity: 0.75;
+        line-height: 1.8;
+        max-width: 48ch;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn-b2b {
+        font-family: var(--ff-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--tierra);
+        background: var(--marfil);
+        padding: 0.75rem 1.8rem;
+        border-radius: 2px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .btn-b2b:hover {
+        background: var(--dorado);
+        color: var(--marfil);
+      }
+
+      /* ============================================================
+   FAQ
+   ============================================================ */
+      #faq {
+        padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+        background: var(--verde-tenue);
+      }
+
+      .faq-list {
+        max-width: 720px;
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .faq-item {
+        background: var(--marfil);
+      }
+
+      .faq-question {
+        font-family: var(--ff-display);
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--verde-profundo);
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        user-select: none;
+        transition: background 0.2s;
+      }
+
+      .faq-question:hover {
+        background: rgba(168, 201, 127, 0.15);
+      }
+
+      .faq-question.open {
+        background: rgba(168, 201, 127, 0.2);
+      }
+
+      .faq-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        transition: transform 0.3s var(--ease-out);
+        color: var(--verde-medio);
+      }
+
+      .faq-question.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s var(--ease-out);
+      }
+
+      .faq-answer-inner {
+        padding: 0 2rem 1.5rem;
+        font-size: 0.95rem;
+        color: var(--negro);
+        opacity: 0.65;
+        line-height: 1.75;
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      footer {
+        background: var(--verde-profundo);
+        padding: 3.5rem clamp(1.5rem, 5vw, 4rem);
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .footer-brand .nav-logo {
+        color: var(--marfil);
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .footer-tagline {
+        font-family: var(--ff-display);
+        font-size: 1rem;
+        font-style: italic;
+        color: var(--marfil);
+        opacity: 0.5;
+      }
+
+      .footer-col-title {
+        font-family: var(--ff-body);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--verde-claro);
+        opacity: 0.6;
+        margin-bottom: 1.2rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .footer-links a {
+        font-size: 0.88rem;
+        color: var(--marfil);
+        opacity: 0.55;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        background: var(--verde-profundo);
+        border-top: 1px solid rgba(168, 201, 127, 0.12);
+        padding: 1.2rem clamp(1.5rem, 5vw, 4rem);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-copy {
+        font-size: 0.75rem;
+        color: var(--marfil);
+        opacity: 0.35;
+      }
+
+      .footer-location {
+        font-size: 0.75rem;
+        color: var(--marfil);
+        opacity: 0.35;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      /* ============================================================
+   ANIMACIONES
+   ============================================================ */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.8s var(--ease-out),
+          transform 0.8s var(--ease-out);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+      @media (max-width: 1024px) {
+        .servicios-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .servicios-grid .servicio-card.featured {
+          grid-column: 1 / -1;
+        }
+        .proceso-steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        footer {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          padding-top: calc(68px + 3rem);
+          padding-bottom: 3rem;
+        }
+        .hero-visual {
+          display: none;
+        }
+        .hero-bg-shape {
+          display: none;
+        }
+        .servicios-grid {
+          grid-template-columns: 1fr;
+        }
+        .proceso-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-group.full {
+          grid-column: 1;
+        }
+        .btn-form {
+          grid-column: 1;
+        }
+        #nosotros-b2b {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+        .ciclo-steps {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .ciclo-arrow {
+          transform: rotate(90deg);
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">Funeraria huella eterna</a>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Cómo funciona</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cotizacion" class="btn-nav">Cotizar</a></li>
+      </ul>
+    </nav>
+
+    <!-- ============================================================
+     HERO
+     ============================================================ -->
+    <section id="hero">
+      <div class="hero-bg-shape"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Torreón, Coahuila</p>
+        <h1 class="hero-title">
+          Tu mascota<br />
+          <em>vive en lo que<br />deja crecer.</em>
+        </h1>
+        <p class="hero-sub">
+          Acompañamos a tu familia en el momento más difícil y transformamos la
+          despedida en un nuevo comienzo — una planta que florece con su
+          esencia.
+        </p>
+        <div class="hero-ctas">
+          <a href="#cotizacion" class="btn-primary">Solicitar cotización</a>
+          <a href="#servicios" class="btn-secondary">Conocer servicios →</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- Ilustración SVG del ciclo de vida -->
+        <svg
+          class="cycle-illustration"
+          viewBox="0 0 400 400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- Círculo base -->
+          <circle
+            cx="200"
+            cy="200"
+            r="160"
+            stroke="#A8C97F"
+            stroke-width="0.8"
+            stroke-dasharray="4 8"
+            opacity="0.3"
+          />
+          <!-- Raíces -->
+          <path
+            d="M200 280 Q180 310 160 330 Q150 345 155 360"
+            stroke="#7A5C38"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            opacity="0.6"
+          />
+          <path
+            d="M200 280 Q210 315 225 335 Q235 350 228 368"
+            stroke="#7A5C38"
+            stroke-width="1.2"
+            fill="none"
+            stroke-linecap="round"
+            opacity="0.4"
+          />
+          <path
+            d="M200 280 Q195 305 185 320 Q175 332 170 348"
+            stroke="#7A5C38"
+            stroke-width="1"
+            fill="none"
+            stroke-linecap="round"
+            opacity="0.3"
+          />
+          <!-- Tallo -->
+          <path
+            d="M200 280 Q196 250 200 220"
+            stroke="#5C8A3E"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Hoja izquierda -->
+          <path
+            d="M200 240 Q175 220 165 200 Q178 210 200 225"
+            fill="#A8C97F"
+            opacity="0.7"
+          />
+          <!-- Hoja derecha -->
+          <path
+            d="M200 255 Q228 235 238 215 Q224 226 200 242"
+            fill="#5C8A3E"
+            opacity="0.6"
+          />
+          <!-- Flor/copa -->
+          <circle cx="200" cy="200" r="28" fill="#E8F4DC" opacity="0.8" />
+          <circle cx="200" cy="200" r="18" fill="#A8C97F" opacity="0.5" />
+          <circle cx="200" cy="200" r="10" fill="#5C8A3E" opacity="0.6" />
+          <!-- Pata de huella — punta de dedo central -->
+          <ellipse
+            cx="200"
+            cy="197"
+            rx="5"
+            ry="6"
+            fill="#2D4A22"
+            opacity="0.7"
+          />
+          <!-- Pata de huella — dedos -->
+          <ellipse
+            cx="192"
+            cy="191"
+            rx="3.5"
+            ry="4"
+            fill="#2D4A22"
+            opacity="0.5"
+          />
+          <ellipse
+            cx="208"
+            cy="191"
+            rx="3.5"
+            ry="4"
+            fill="#2D4A22"
+            opacity="0.5"
+          />
+          <ellipse
+            cx="186"
+            cy="198"
+            rx="3"
+            ry="3.5"
+            fill="#2D4A22"
+            opacity="0.4"
+          />
+          <ellipse
+            cx="214"
+            cy="198"
+            rx="3"
+            ry="3.5"
+            fill="#2D4A22"
+            opacity="0.4"
+          />
+          <!-- Órbita de partículas pequeñas -->
+          <circle cx="60" cy="200" r="3" fill="#C4A265" opacity="0.4" />
+          <circle cx="340" cy="200" r="2.5" fill="#C4A265" opacity="0.3" />
+          <circle cx="200" cy="55" r="2" fill="#A8C97F" opacity="0.5" />
+          <circle cx="130" cy="95" r="1.5" fill="#5C8A3E" opacity="0.3" />
+          <circle cx="275" cy="310" r="2" fill="#7A5C38" opacity="0.3" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     CONCEPTO — EL CICLO
+     ============================================================ -->
+    <section id="concepto">
+      <p class="concepto-eyebrow reveal">El ciclo de la vida</p>
+      <h2 class="concepto-title reveal">
+        De tu mascota<br /><em>nace algo nuevo.</em>
+      </h2>
+      <p class="concepto-body reveal">
+        Cada ser que amamos deja una huella. Nuestra misión es honrar esa huella
+        y devolverla a la tierra — no como un final, sino como el inicio de algo
+        que seguirá creciendo junto a ti.
+      </p>
+      <div class="ciclo-steps reveal">
+        <div class="ciclo-step">
+          <div class="ciclo-step-num">01</div>
+          <div class="ciclo-step-label">La vida</div>
+          <div class="ciclo-step-desc">Tu compañero</div>
+        </div>
+        <div class="ciclo-arrow">→</div>
+        <div class="ciclo-step">
+          <div class="ciclo-step-num">02</div>
+          <div class="ciclo-step-label">La despedida</div>
+          <div class="ciclo-step-desc">Con dignidad</div>
+        </div>
+        <div class="ciclo-arrow">→</div>
+        <div class="ciclo-step">
+          <div class="ciclo-step-num">03</div>
+          <div class="ciclo-step-label">El renacimiento</div>
+          <div class="ciclo-step-desc">Una planta que florece</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     SERVICIOS
+     ============================================================ -->
+    <section id="servicios">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Lo que ofrecemos</p>
+        <h2 class="section-title">
+          Servicios pensados<br /><em>para cada familia.</em>
+        </h2>
+      </div>
+
+      <div class="servicios-grid">
+        <!-- SIEMBRA — FEATURED -->
+        <div class="servicio-card featured reveal">
+          <span class="servicio-badge">Diferenciador exclusivo</span>
+          <svg
+            class="servicio-icon"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M20 32 Q16 22 12 16 Q18 20 20 24 Q22 20 28 16 Q24 22 20 32Z"
+              fill="#A8C97F"
+            />
+            <path
+              d="M20 32 L20 36"
+              stroke="#7A5C38"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <h3 class="servicio-name">Siembra</h3>
+          <p class="servicio-desc">
+            La forma más poética de despedirse. Los restos de tu mascota se
+            integran a la tierra de manera natural, nutrendo una planta que
+            podrás tener contigo en casa — su esencia sigue viva en cada hoja
+            que crece.
+          </p>
+          <ul class="servicio-includes">
+            <li>Proceso ecológico certificado</li>
+            <li>Maceta con planta incluida, o composta para tu jardín</li>
+            <li>Acompañamiento durante todo el proceso</li>
+            <li>Certificado de Siembra</li>
+          </ul>
+          <p class="servicio-target">Para familias · B2C</p>
+        </div>
+
+        <!-- CREMACIÓN -->
+        <div class="servicio-card reveal">
+          <svg
+            class="servicio-icon"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 30 Q12 18 20 12 Q28 18 28 30"
+              stroke="#5C8A3E"
+              stroke-width="1.5"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16 30 L24 30"
+              stroke="#7A5C38"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <h3 class="servicio-name">Cremación<br />en urna</h3>
+          <p class="servicio-desc">
+            Despedida individual, con la garantía de que los restos que
+            recibirás son únicamente los de tu mascota. Un último momento
+            juntos, con toda la dignidad que merece.
+          </p>
+          <ul class="servicio-includes">
+            <li>Cremación individual certificada</li>
+            <li>Urna a elegir</li>
+            <li>Recolección a domicilio</li>
+            <li>Entrega en 24–48 hrs</li>
+          </ul>
+          <p class="servicio-target">Para familias · B2C</p>
+        </div>
+
+        <!-- FOSA COMÚN B2B -->
+        <div class="servicio-card reveal">
+          <svg
+            class="servicio-icon"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="10"
+              y="14"
+              width="20"
+              height="16"
+              rx="2"
+              stroke="#5C8A3E"
+              stroke-width="1.5"
+            />
+            <path
+              d="M15 14 L15 10 Q15 8 17 8 L23 8 Q25 8 25 10 L25 14"
+              stroke="#5C8A3E"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <h3 class="servicio-name">Fosa<br />común</h3>
+          <p class="servicio-desc">
+            Servicio diseñado para clínicas veterinarias. Manejo digno,
+            sanitario y conforme a la normativa vigente para los pacientes que
+            llegan sin familia.
+          </p>
+          <ul class="servicio-includes">
+            <li>Recolección directa en clínica</li>
+            <li>Proceso normado y documentado</li>
+            <li>Convenios para volumen</li>
+          </ul>
+          <p class="servicio-target">Solo para veterinarias · B2B</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     COTIZACIÓN
+     ============================================================ -->
+    <section id="cotizacion">
+      <div class="cotizacion-inner">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Cotización</p>
+          <h2 class="section-title">
+            Estamos aquí<br /><em>para acompañarte.</em>
+          </h2>
+        </div>
+        <p
+          style="
+            font-size: 0.95rem;
+            opacity: 0.65;
+            max-width: 50ch;
+            line-height: 1.75;
+            margin-top: 0.5rem;
+          "
+          class="reveal"
+        >
+          Cuéntanos sobre tu mascota y te respondemos en minutos. Sin
+          compromiso, sin procesos complicados.
+        </p>
+
+        <form id="quoteForm" class="form-grid reveal" novalidate>
+          <div class="form-group">
+            <label for="nombre">Tu nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="¿Cómo te llamas?"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono o WhatsApp</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              placeholder="871 000 0000"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio de interés</label>
+            <select id="servicio" name="servicio" required>
+              <option value="" disabled selected>Selecciona un servicio</option>
+              <option value="siembra">
+                Siembra — mi mascota vive en una planta
+              </option>
+              <option value="cremacion">Cremación en urna</option>
+              <option value="b2b">Convenio veterinaria (fosa común)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="especie">Especie</label>
+            <select id="especie" name="especie">
+              <option value="" disabled selected>Perro, gato, otro...</option>
+              <option value="perro">Perro</option>
+              <option value="gato">Gato</option>
+              <option value="conejo">Conejo</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="nombre_mascota"
+              >Nombre de tu mascota
+              <span style="opacity: 0.4; font-size: 0.65rem"
+                >(opcional)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="nombre_mascota"
+              name="nombre_mascota"
+              placeholder="¿Nombre de la mascota?"
+            />
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso aproximado (kg)</label>
+            <input
+              type="number"
+              id="peso"
+              name="peso"
+              placeholder="ej. 8"
+              min="0"
+              max="200"
+            />
+          </div>
+          <p class="form-note">
+            Tu información es confidencial. Solo la usamos para contactarte.
+          </p>
+          <button type="submit" class="btn-form">
+            Quiero acompañar a mi mascota →
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          Gracias. Te contactamos en breve para acompañarte en este proceso.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     PROCESO
+     ============================================================ -->
+    <section id="proceso">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">El proceso</p>
+        <h2 class="section-title">
+          Simple, digno<br /><em>y sin complicaciones.</em>
+        </h2>
+      </div>
+
+      <div class="proceso-steps">
+        <div class="proceso-step reveal">
+          <div class="paso-num">01</div>
+          <h3 class="paso-title">Nos contactas</h3>
+          <p class="paso-desc">
+            Llenas el formulario o nos escribes por WhatsApp. Te respondemos en
+            minutos, a cualquier hora.
+          </p>
+        </div>
+        <div class="proceso-step reveal">
+          <div class="paso-num">02</div>
+          <h3 class="paso-title">Recogemos a tu mascota</h3>
+          <p class="paso-desc">
+            Vamos a tu domicilio o a la clínica veterinaria. Manejamos todo con
+            el cuidado que tu familia merece.
+          </p>
+        </div>
+        <div class="proceso-step reveal">
+          <div class="paso-num">03</div>
+          <h3 class="paso-title">El proceso</h3>
+          <p class="paso-desc">
+            Llevamos a cabo el servicio que elegiste — cremación o Siembra — con
+            pleno respeto y normativa vigente.
+          </p>
+        </div>
+        <div class="proceso-step reveal">
+          <div class="paso-num">04</div>
+          <h3 class="paso-title">Tu despedida</h3>
+          <p class="paso-desc">
+            Recibes la urna, la planta o la composta en tu domicilio. Con el
+            certificado y nuestro acompañamiento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     NOSOTROS + B2B
+     ============================================================ -->
+    <div id="nosotros-b2b">
+      <section id="nosotros">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Nosotros</p>
+          <h2 class="section-title">
+            Funeraria huella eterna<br /><em>nació aquí.</em>
+          </h2>
+        </div>
+        <p class="nosotros-body reveal">
+          Somos un equipo de Matamoros, Coahuila, que decidió que la Comarca
+          Lagunera merecía una opción diferente — una que honre de verdad el
+          vínculo entre las familias y sus mascotas. Operamos con todos los
+          permisos y bajo normativa ambiental vigente.
+        </p>
+      </section>
+
+      <section id="b2b">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Para veterinarias</p>
+          <h2 class="section-title">Convenios<br /><em>B2B.</em></h2>
+        </div>
+        <p class="b2b-body reveal">
+          Si eres médico veterinario o administras una clínica, ofrecemos
+          convenios para manejo de pacientes sin familia. Proceso documentado,
+          cumplimiento normativo y precios por volumen.
+        </p>
+        <a href="#cotizacion" class="btn-b2b reveal">Quiero un convenio</a>
+      </section>
+    </div>
+
+    <!-- ============================================================
+     FAQ
+     ============================================================ -->
+    <section id="faq">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Preguntas frecuentes</p>
+        <h2 class="section-title">Lo que más<br /><em>nos preguntan.</em></h2>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué es exactamente el servicio de Siembra?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              La Siembra es un proceso natural en el que los restos de tu
+              mascota se integran al sustrato de una planta. Su cuerpo nutre la
+              tierra, y esa tierra da vida a algo que puedes tener en casa o en
+              tu jardín. No es solo un símbolo — tu mascota literalmente sigue
+              formando parte del mundo que te rodea.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo sé que los restos que recibo son los de mi mascota?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Todas nuestras cremaciones son individuales. Tu mascota es
+              procesada de forma exclusiva y los restos se identifican desde el
+              inicio hasta la entrega. Emitimos un certificado que lo respalda.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ¿En cuánto tiempo recibo los restos o la planta?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Para cremación en urna, la entrega es en 24 a 48 horas. Para el
+              servicio de Siembra, el proceso es un poco más largo — entre 3 y 7
+              días — para que la planta quede en condiciones ideales antes de
+              llegar a tus manos.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ¿Hacen recolección a domicilio en toda la Comarca Lagunera?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. Cubrimos Torreón, Gómez Palacio, Lerdo y zonas cercanas. Si
+              tienes duda sobre tu ubicación, escríbenos y lo confirmamos de
+              inmediato.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ¿Puedo estar presente durante el proceso?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. Si deseas acompañar a tu mascota en el momento de la
+              cremación, te habilitamos un espacio privado y acompañado para que
+              puedas hacerlo con calma. Avísanos al solicitar tu cotización.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer>
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Funeraria huella eterna</a>
+        <p class="footer-tagline">De tu mascota nace algo nuevo.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Servicios</p>
+        <ul class="footer-links">
+          <li><a href="#servicios">Siembra</a></li>
+          <li><a href="#servicios">Cremación en urna</a></li>
+          <li><a href="#b2b">Convenios veterinarias</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contacto</p>
+        <ul class="footer-links">
+          <li><a href="#cotizacion">Solicitar cotización</a></li>
+          <li><a href="https://wa.me/52XXXXXXXXXX">WhatsApp</a></li>
+          <li><a href="#">Matamoros, Coahuila</a></li>
+        </ul>
+      </div>
+    </footer>
+    <div class="footer-bottom">
+      <span class="footer-copy"
+        >© 2026 Funeraria huella eterna. Todos los derechos reservados.</span
+      >
+      <span class="footer-location">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <circle
+            cx="6"
+            cy="5"
+            r="2.5"
+            stroke="currentColor"
+            stroke-width="1"
+          />
+          <path
+            d="M6 9 Q3 6.5 3 5a3 3 0 016 0Q9 6.5 6 9Z"
+            stroke="currentColor"
+            stroke-width="1"
+            fill="none"
+          />
+        </svg>
+        Comarca Lagunera, México
+      </span>
+    </div>
+
+    <!-- ============================================================
+     JS — SCROLL, REVEAL, FAQ, FORM
+     ============================================================ -->
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          navbar.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+      // Reveal on scroll
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      // FAQ accordion
+      function toggleFaq(btn) {
+        const allBtns = document.querySelectorAll(".faq-question");
+        const allAnswers = document.querySelectorAll(".faq-answer");
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains("open");
+
+        allBtns.forEach((b) => b.classList.remove("open"));
+        allAnswers.forEach((a) => (a.style.maxHeight = null));
+
+        if (!isOpen) {
+          btn.classList.add("open");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      }
+
+      // Form mock submit
+      document
+        .getElementById("quoteForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const data = {
+            nombre: document.getElementById("nombre").value,
+            telefono: document.getElementById("telefono").value,
+            servicio: document.getElementById("servicio").value,
+            especie: document.getElementById("especie").value,
+            nombre_mascota: document.getElementById("nombre_mascota").value,
+            peso: document.getElementById("peso").value,
+          };
+
+          if (
+            !data.nombre ||
+            !data.especie ||
+            !data.servicio ||
+            !data.telefono ||
+            !data.peso ||
+            !data.nombre_mascota
+          ) {
+            alert("Por favor completa los campos obligatorios.");
+            return;
+          }
+
+          // Aquí irá el fetch al endpoint del compañero
+          // fetch('/api/quotes', { method: 'POST', body: JSON.stringify({...}) })
+
+          fetch("https://api.funeraria-huellaeterna.com/api/form_register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((response) => {
+              console.log(response);
+
+              document.getElementById("quoteForm").style.display = "none";
+              document.getElementById("formSuccess").style.display = "block";
+            })
+            .catch((err) => {
+              // console.error(err);
+              alert("Ocurrió un error al enviar la solicitud.");
+            });
+
+          // console.log("Formulario enviado:", data);
+
+          this.style.display = "none";
+          document.getElementById("formSuccess").style.display = "block";
+        });
+    </script>
+  </body>
+</html>

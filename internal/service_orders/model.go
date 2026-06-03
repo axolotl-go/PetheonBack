@@ -1,24 +1,28 @@
 package serviceorders
 
 import (
+	"github.com/axolotl-go/eternal_paw/internal/pets"
 	"gorm.io/gorm"
 )
 
 type Order struct {
 	gorm.Model
 
-	OrderNumber string `gorm:"uniqueIndex;not null" json:"order_number"`
+	UserID uint `json:"user_id"`
 
-	UserID uint `gorm:"not null;index" json:"user_id"`
-	PetID  uint `gorm:"not null;index" json:"pet_id"`
+	PetID uint     `json:"pet_id"`
+	Pet   pets.Pet `json:"pet" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 
-	ServiceType string `gorm:"not null;default:composta" json:"service_type"` // Composta & Cremation & Normal
+	OrderNumber   string `json:"order_number"`
+	ServiceTypeID uint   `json:"service_type_id" validate:"required"`
 
-	PickupRequired bool   `gorm:"not null" json:"pickup_required"`
-	PickupAddress  string `json:"pickup_address"`
+	PickupRequired bool   `json:"pickup_required"`
+	PickupAddress  string `json:"pickup_address" validate:"required_if=PickupRequired true"`
 
-	UrnRequested bool `gorm:"not null" json:"urn_requested"` // Urna para las cenizas
+	Active bool    `json:"active" gorm:"default:false"`
+	Price  float64 `json:"price"`
+	Status string  `json:"status"`
+}
 
-	Price  float64 `gorm:"not null" json:"price"`
-	Status string  `gorm:"not null;index" json:"status"`
+type OrderResponse struct {
 }

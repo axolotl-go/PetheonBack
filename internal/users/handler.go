@@ -115,7 +115,7 @@ func Login(c *fiber.Ctx) error {
 		Path:     "/",
 		HTTPOnly: true,
 		Secure:   false,
-		SameSite: "Lax",
+		SameSite: "None",
 		MaxAge:   60 * 60 * 24,
 	})
 
@@ -127,7 +127,23 @@ func Login(c *fiber.Ctx) error {
 	})
 }
 
-func GetUserData(c *fiber.Ctx) error {
+func Logout(c *fiber.Ctx) error {
+	c.Cookie(&fiber.Cookie{
+		Name:     "token",
+		Value:    "",
+		Path:     "/",
+		MaxAge:   -1,
+		HTTPOnly: true,
+		Secure:   false,
+		SameSite: "None",
+	})
+
+	return c.JSON(fiber.Map{
+		"message": "Logged out successfully",
+	})
+}
+
+func Me(c *fiber.Ctx) error {
 	tokenString := c.Cookies("token")
 	if tokenString == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
@@ -155,22 +171,6 @@ func GetUserData(c *fiber.Ctx) error {
 		"address":  user.Address,
 		"phone":    user.Phone,
 		"role":     user.Role,
-	})
-}
-
-func Logout(c *fiber.Ctx) error {
-	c.Cookie(&fiber.Cookie{
-		Name:     "token",
-		Value:    "",
-		Path:     "/",
-		MaxAge:   -1,
-		HTTPOnly: true,
-		Secure:   false,
-		SameSite: "None",
-	})
-
-	return c.JSON(fiber.Map{
-		"message": "Logged out successfully",
 	})
 }
 

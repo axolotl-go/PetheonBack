@@ -62,13 +62,47 @@ func View(c *fiber.Ctx) error {
 }
 
 func Views(c *fiber.Ctx) error {
-	var serviceType []ServiceType
 
-	if err := db.DB.Find(&serviceType).Error; err != nil {
+	type ServiceTypeResponse struct {
+		Id          uint    `json:"id"`
+		Name        string  `json:"name"`
+		Description string  `json:"description"`
+		Price       float64 `json:"price"`
+	}
+
+	var serviceTypes []ServiceTypeResponse
+
+	if err := db.DB.Model(&ServiceType{}).Find(&serviceTypes).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Failed to fetch service types",
 		})
 	}
 
-	return c.JSON(serviceType)
+	return c.JSON(
+		fiber.Map{
+			"Orders": serviceTypes,
+		},
+	)
+}
+
+func Delete(c *fiber.Ctx) error {
+	var serviceType ServiceType
+	id := c.Params("id")
+
+	if err := db.DB.First(&serviceType, id).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Service type not found",
+		})
+	}
+
+	if err := db.DB.Delete(&serviceType, id).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Service type not found",
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status":  "ok",
+		"message": "Service type deleted successfully",
+	})
 }

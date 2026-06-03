@@ -3,20 +3,22 @@ package serviceorders
 import (
 	servicetype "github.com/axolotl-go/eternal_paw/internal/ServiceType"
 	"github.com/axolotl-go/eternal_paw/internal/db"
-	"github.com/axolotl-go/eternal_paw/internal/pets"
 	"github.com/axolotl-go/eternal_paw/internal/users"
 	"github.com/axolotl-go/eternal_paw/internal/utils"
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 )
+
+var validate = validator.New()
 
 func Create(c *fiber.Ctx) error {
 	var order Order
 	var user users.User
-	var pet pets.Pet
+	var serviceType servicetype.ServiceType
 
 	if err := c.BodyParser(&order); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Invalid request body",
+			"error": err.Error(),
 		})
 	}
 
@@ -26,46 +28,43 @@ func Create(c *fiber.Ctx) error {
 		})
 	}
 
-	if err := db.DB.Where("id = ?", order.PetID).First(&pet).Error; err != nil {
+	if err := db.DB.Where("id = ?", order.ServiceTypeID).First(&serviceType).Error; err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"error": "Pet not found",
+			"error": "Service not found",
 		})
 	}
 
-	if pet.UserID != user.ID {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Pet does not belong to user",
-		})
-	}
-
-	var st servicetype.ServiceType
-	if err := db.DB.Where("id = ?", order.ServiceType).First(&st).Error; err != nil {
-		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"error": "Service type not found",
-		})
-	}
-
-	order.ServiceType = st.Name
-
-	order.Status = "pending"
-
-	if order.PickupRequired {
-		order.PickupAddress = user.Address
-	} else {
-		order.PickupAddress = ""
-	}
-
-	order.Price = st.Price * pet.Weight
-
+	order.Active = false
 	order.OrderNumber = utils.GenerateOrder()
 
-	if err := db.DB.Create(&order).Error; err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Failed to create order",
+	if err := validate.Struct(order); err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"error": err.Error(),
 		})
 	}
 
+	// Pricing
+
+	// Address
+	order.Status = "pending"
+
+	order.PickupAddress = ""
+	if order.PickupRequired && user.Address != "" {
+		order.PickupAddress = user.Address
+	}
+
+	// if err := db.DB.Create(&order).Error; err != nil {
+	// 	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+	// 		"error": err.Error(),
+	// 	})
+	// }
+
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-		"order": order,
+		"message": "Created successfully",
+		"Order":   order,
 	})
+}
+
+func Views(c *fiber.Ctx) error {
+	return c.JSON("Good")
 }

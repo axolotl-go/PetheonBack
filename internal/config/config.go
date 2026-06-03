@@ -15,6 +15,7 @@ type Config struct {
 	DBToken     string
 	StoragePath string
 	CorsOrigins string
+	LOGSFILE    string
 }
 
 func Load() *Config {
@@ -29,6 +30,7 @@ func Load() *Config {
 		DBToken:     os.Getenv("DB_TOKEN"),
 		StoragePath: os.Getenv("STORAGE_PATH"),
 		CorsOrigins: os.Getenv("CORS_ORIGINS"),
+		LOGSFILE:    os.Getenv("LOGS_FILE"),
 	}
 }
 

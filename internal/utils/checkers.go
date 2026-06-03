@@ -35,7 +35,3 @@ func GenerateOrder() string {
 
 	return fmt.Sprintf("%s-%d", l, n.Int64()) // abc-012
 }
-
-// func CalculatePrice() float64 {
-
-// }
